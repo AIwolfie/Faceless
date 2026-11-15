@@ -626,6 +626,140 @@ class AnimationRegistry:
             qa_tags=["visual_continuity"]
         ))
 
+        # 8. Learned Dynamic Mobile & Long-form Explainer Techniques
+        self.register(AnimationDefinition(
+            id="ui.dots_progress_tracker",
+            family="ui",
+            name="Top Dot-Dash Progress Indicator",
+            description="Horizontal row of dots tracking sequence of tips/patterns with active elongated accent dash.",
+            intent_tags=["progress", "listicle", "tips_sequence"],
+            content_signals=["tip_number", "step_indicator", "pattern_advance"],
+            complexity="low",
+            default_intensity=1,
+            duration_seconds={"min": 0.3, "default": 1.0, "max": 3.0},
+            supports=["active_index", "total_steps", "accent_color"],
+            parameters={"total_steps": {"type": "number", "default": 7, "min": 2, "max": 12}},
+            requires_assets=False,
+            audio_sync=["sfx_transient"],
+            fallback=None,
+            renderer="render_core.draw_progress_dots",
+            qa_tags=["safe_margins"]
+        ), aliases=["dots_progress_tracker", "header_dots"])
+
+        self.register(AnimationDefinition(
+            id="card.strikethrough_hero",
+            family="card",
+            name="Hero Comparison Card with Strikethrough",
+            description="Floating hero card showing anti-pattern or competitor struck through in red above winning pattern.",
+            intent_tags=["comparison", "bad_vs_good", "pro_pattern"],
+            content_signals=["anti_pattern", "strikethrough", "competitor_cross"],
+            complexity="medium",
+            default_intensity=3,
+            duration_seconds={"min": 1.5, "default": 3.5, "max": 8.0},
+            supports=["card_rect", "strikethrough_text", "pattern_name", "icon"],
+            parameters={"has_free_pill": {"type": "boolean", "default": True}},
+            requires_assets=False,
+            audio_sync=["sfx_transient"],
+            fallback="edit.split_screen",
+            renderer="render_core.draw_strikethrough_card",
+            qa_tags=["no_layout_collision"]
+        ), aliases=["strikethrough_card", "hero_comparison_card"])
+
+        self.register(AnimationDefinition(
+            id="shape.slam_sticker",
+            family="shape",
+            name="3D Angled Impact Slam Sticker",
+            description="Angled stamp badge rotated -8 to -12 deg slamming in with scale compression and thud SFX.",
+            intent_tags=["impact", "highlight", "rule", "badge"],
+            content_signals=["free_badge", "limit_reached", "stop_hallucination", "important_rule"],
+            complexity="medium",
+            default_intensity=3,
+            duration_seconds={"min": 0.3, "default": 0.8, "max": 2.5},
+            supports=["rotation_deg", "scale_bounce", "badge_color"],
+            parameters={"angle": {"type": "number", "default": -9.0, "min": -25.0, "max": 25.0}},
+            requires_assets=False,
+            audio_sync=["sfx_transient"],
+            fallback="type.scale_punch",
+            renderer="render_core.draw_slam_sticker",
+            qa_tags=["visual_continuity"]
+        ), aliases=["slam_sticker", "stamp_badge"])
+
+        self.register(AnimationDefinition(
+            id="data.status_meter_switch",
+            family="data",
+            name="Interactive Progress Fill & Auto-Switch",
+            description="Progress or session meter fills from 0 to 100%, triggers limit alert, and switches to fallback model with arrow.",
+            intent_tags=["failover", "limit_reached", "auto_switch", "model_routing"],
+            content_signals=["session_limit", "model_switching", "auto_failover"],
+            complexity="high",
+            default_intensity=3,
+            duration_seconds={"min": 2.0, "default": 4.5, "max": 10.0},
+            supports=["fill_pct", "from_target", "to_target", "arrow_drop"],
+            parameters={"alert_text": {"type": "string", "default": "LIMIT REACHED"}},
+            requires_assets=False,
+            audio_sync=["sfx_transient"],
+            fallback="data.bar_reveal",
+            renderer="render_core.draw_status_meter_switch",
+            qa_tags=["data_accuracy"]
+        ), aliases=["status_meter_transition", "auto_model_switch"])
+
+        self.register(AnimationDefinition(
+            id="char.presenter_gestures",
+            family="object",
+            name="Vector Presenter Reactive Gestures",
+            description="2D vector presenter anchored in frame with synchronized gestures matching narration state.",
+            intent_tags=["character", "humanized", "presenter"],
+            content_signals=["explainer_host", "reaction", "pointing"],
+            complexity="medium",
+            default_intensity=2,
+            duration_seconds={"min": 1.5, "default": 4.0, "max": 30.0},
+            supports=["pose", "mouth_morph", "idle_breath"],
+            parameters={"pose": {"type": "choice", "default": "point_up", "choices": ["point_up", "hands_clasped", "shrug", "point_card"]}},
+            requires_assets=False,
+            audio_sync=["word_timestamp"],
+            fallback=None,
+            renderer="render_core.draw_character_presenter",
+            qa_tags=["visual_continuity"]
+        ), aliases=["character_presenter", "host_avatar"])
+
+        self.register(AnimationDefinition(
+            id="card.summary_checklist",
+            family="card",
+            name="Stacked Summary Checklist Card",
+            description="High-contrast card with staggered checkmarks snapping in with chime SFX.",
+            intent_tags=["summary", "recap", "checklist"],
+            content_signals=["feature_list", "key_takeaways", "verified_rules"],
+            complexity="medium",
+            default_intensity=2,
+            duration_seconds={"min": 1.5, "default": 3.5, "max": 8.0},
+            supports=["items", "check_stagger"],
+            parameters={"items_count": {"type": "number", "default": 3, "min": 2, "max": 6}},
+            requires_assets=False,
+            audio_sync=["sfx_transient"],
+            fallback="card.staggered_column",
+            renderer="render_core.draw_summary_checklist",
+            qa_tags=["safe_margins"]
+        ), aliases=["summary_checklist", "checklist_card"])
+
+        self.register(AnimationDefinition(
+            id="type.kinetic_pill",
+            family="typography",
+            name="High-Contrast Containerized Pill Captions",
+            description="Vibrant contrast pill container at bottom center with active word illumination.",
+            intent_tags=["captions", "accessibility", "retention"],
+            content_signals=["spoken_chunk", "subtitle_pill"],
+            complexity="low",
+            default_intensity=2,
+            duration_seconds={"min": 0.5, "default": 1.5, "max": 4.0},
+            supports=["pill_color", "text_color", "active_color"],
+            parameters={"font_size": {"type": "number", "default": 38, "min": 28, "max": 72}},
+            requires_assets=False,
+            audio_sync=["word_timestamp"],
+            fallback="type.karaoke_highlight",
+            renderer="render_core.draw_kinetic_pill_captions",
+            qa_tags=["safe_margins"]
+        ), aliases=["kinetic_pill_captions", "pill_subtitles"])
+
     def _register_spec_2026_pack(self):
         """Loads and registers the 2026 TechXKenil Animation Library specification taxonomy (T1-T8, E1-E11, C1-C8, S1-S5, F1-F5)."""
         spec_path = os.path.join(REPO_ROOT, "agents", "skills", "animation-library", "registry.json")

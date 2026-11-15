@@ -293,16 +293,23 @@ techxkenil-video-engine/
 │
 ├── docs/                     # Architectural blueprints & engineering specs
 │   ├── 4K_60FPS_ENGINE_BLUEPRINT.md # Resolution-independent 4K 60FPS architecture
-│   └── HUMAN_EDITING_DESIGN_SYSTEM.md # Human-crafted visual design & retention rules
+│   ├── HUMAN_EDITING_DESIGN_SYSTEM.md # Human-crafted visual design & retention rules
+│   ├── animation_sync_spec.md       # Voice-synced animation, SFX synthesis & mix spec
+│   └── screen_layout_spec.md        # Screen utilization for 16:9 and 9:16 video formats
+│
+├── layout.yaml               # Screen zone & caption boundary rules (16:9 & 9:16)
 │
 ├── tools/                    # Shared production libraries
 │   ├── render_core.py        # 4K 60FPS vector compositor, overscan canvas, karaoke
 │   ├── video_pipeline.py     # Hardware-accelerated streaming pipeline (QSV/NVENC/MF)
+│   ├── viral_animator.py     # Story-driven declarative vector & spring physics animator
 │   ├── real_footage.py       # Authentic footage compliance, licensing logger, grading
 │   ├── channel_config.py     # Modular channel profile & branding loader
+│   ├── sync_engine.py        # Dual-space synchronization & zero-leak perimeter verification
 │   ├── motion.py             # Springs, supersampling, blur, keyframes
 │   ├── humanize.py           # Easing, karaoke, SFX synthesizer, master()
-│   ├── qa.py                 # Automated video & audio QA gate (4K 60FPS validation)
+│   ├── sound_engine.py       # Procedural SFX generation & broadcast mastering (-15 LUFS)
+│   ├── qa.py                 # Automated video & audio QA gate (freeze & decode validation)
 │   ├── capture_ui.py         # Headless Chromium screen capture (--4k) & terminal generator
 │   ├── generate_metadata.py  # High-CTR YouTube SEO & chapter generator
 │   └── generate_thumbnail.py # Automated high-CTR thumbnail generator
@@ -312,14 +319,16 @@ techxkenil-video-engine/
 │   └── channel_profile_template.md # Channel branding & persona template
 │
 ├── agents/                   # Agent configurations & knowledge base
-│   ├── rules/                # Modular video production rules
+│   ├── rules/                # Modular video production rules (visual rhythm, animation selection)
 │   └── skills/               # Custom Antigravity skills
+│       ├── viral-motion-graphics/ # High-retention vector animations & spring motion
 │       ├── real-world-footage/ # Authentic footage, YouTube 2026 originality, license logger
 │       ├── motion-editing/   # Core motion graphics skill
 │       ├── humanized-video/  # Humanized pacing & variation
 │       ├── real-ui/          # Authentic UI screen capture enforcement
 │       ├── generate-thumbnail/ # High-CTR thumbnail generator
-│       └── youtube-metadata/ # Algorithm SEO & chapter generator
+│       ├── youtube-metadata/ # Algorithm SEO & chapter generator
+│       └── remotion-*/       # Remotion React-based rendering and captioning skills
 │
 ├── VideoFiles/               # Centralized local video suites (git-ignored, local only)
 ├── TechXKenil/               # Private local channel space (git-ignored, local only; creator's custom folder)

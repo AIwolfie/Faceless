@@ -135,6 +135,11 @@ SYNC_PAIRS = [
         "animation-library"
     ),
     (
+        "agents/skills/viral-motion-graphics/SKILL.md",
+        "TechXKenil/skills/techxkenil-viral-motion-graphics/SKILL.md",
+        "animation-director"
+    ),
+    (
         "GEMINI.md",
         "TechXKenil/GEMINI.md",
         "gemini"

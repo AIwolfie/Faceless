@@ -212,5 +212,7 @@ class StreamingVideoPipeline:
     def __enter__(self):
         return self
 
+    finalize = close
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()

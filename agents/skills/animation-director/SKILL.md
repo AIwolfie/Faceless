@@ -50,3 +50,15 @@ Whenever a video prompt, script, or scene list requires visual planning:
 | **2** | **Standard** | Clean spring entrances, real UI window focus, list stagger, directional slide. |
 | **3** | **Dynamic** | Scale punch hook, numeric count-up, terminal command execution, split comparison. |
 | **4** | **Hero Impact** | Reserved for major hook payoff or conversion outro (Bezier cursor glide + ripple). |
+
+---
+
+## 4. Sequential Explainer & High-Retention Listicle Patterns
+
+For rapid-fire sequential explainers, pattern breakdowns, and developer tool guides:
+1. **Dot-Dash Progress Tracker (`ui.dots_progress_tracker`):** Position across top safe zone (`y=220-250` Short, `y=80-120` Long) with active elongated accent dash showing progress across the tips.
+2. **Strikethrough Hero Cards (`card.strikethrough_hero`):** Place floating hero card with red strike-through across bad habits / competitors above the winning pattern.
+3. **Impact Slam Stickers (`shape.slam_sticker`):** Use 3D angled badges (-8° to -12° rotation, spring scale bounce) synchronized with procedural `slam` audio thud.
+4. **Interactive State Switch (`data.status_meter_switch`):** Animate progress filling from 0% to 100%, trigger limit badge, and drop directional arrow to secondary solution with `switch` SFX.
+5. **Checklist Summary (`card.summary_checklist`):** Stacked key takeaway card with progressive checkmark snaps and double-bell `chime` audio.
+6. **Kinetic Pill Captions (`type.kinetic_pill`):** High-contrast pill container in Band C with dynamic active-word illumination.

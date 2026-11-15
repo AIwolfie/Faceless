@@ -24,7 +24,11 @@ def generate_sfx(kind: str, sr: int = 48000, seed: int = 42) -> np.ndarray:
     - pop: Crisp high-frequency pop for card/chip entrances (120ms)
     - tick: Subtle tactile tick for list reveals and metrics (40ms)
     - whoosh: Air whoosh for chapter wipes and major scene transitions (350ms)
+    - whip: Fast crisp air swipe for rapid card transitions (140ms)
     - chime: Harmonious double-bell chime for green tests and success cards (500ms)
+    - slam: Punchy low-frequency impact thud for bold stickers and limit warnings (220ms)
+    - switch: High-tech digital chirp/blip for status changes and model switches (80ms)
+    - clack: Mechanical key-tap click for terminal prompt typing (50ms)
     """
     rng = np.random.default_rng(seed)
     
@@ -46,10 +50,18 @@ def generate_sfx(kind: str, sr: int = 48000, seed: int = 42) -> np.ndarray:
         n = int(sr * 0.35)
         t = np.linspace(0, 1, n)
         noise = rng.normal(0, 1, n)
-        # 16-sample moving average filter
         kernel = np.ones(20) / 20.0
         filtered = np.convolve(noise, kernel, mode="same")
         envelope = np.sin(np.pi * t) ** 2.5
+        sig = filtered * envelope
+
+    elif kind == "whip":
+        n = int(sr * 0.14)
+        t = np.linspace(0, 1, n)
+        noise = rng.normal(0, 1, n)
+        kernel = np.ones(10) / 10.0
+        filtered = np.convolve(noise, kernel, mode="same")
+        envelope = np.sin(np.pi * t) ** 4.0
         sig = filtered * envelope
         
     elif kind == "chime":
@@ -57,6 +69,31 @@ def generate_sfx(kind: str, sr: int = 48000, seed: int = 42) -> np.ndarray:
         t = np.arange(n) / sr
         env = np.minimum(t / 0.005, 1.0) * np.exp(-t / 0.14)
         sig = (np.sin(2 * np.pi * 880.0 * t) + 0.6 * np.sin(2 * np.pi * 1320.0 * t) + 0.3 * np.sin(2 * np.pi * 1760.0 * t)) * env
+
+    elif kind == "slam":
+        n = int(sr * 0.22)
+        t = np.arange(n) / sr
+        freq = 180.0 * np.exp(-t * 28.0) + 45.0
+        phase = 2.0 * np.pi * np.cumsum(freq) / sr
+        sub = np.sin(phase)
+        snap = rng.normal(0, 0.4, n) * np.exp(-t * 60.0)
+        env = np.minimum(t / 0.002, 1.0) * np.exp(-t / 0.06)
+        sig = (sub * 0.8 + snap * 0.3) * env
+
+    elif kind == "switch":
+        n = int(sr * 0.08)
+        t = np.arange(n) / sr
+        freq = 1100.0 + 800.0 * (t / (n / sr))
+        phase = 2.0 * np.pi * np.cumsum(freq) / sr
+        env = np.sin(np.pi * (t / (n / sr))) ** 1.8
+        sig = np.sin(phase) * env
+
+    elif kind == "clack":
+        n = int(sr * 0.05)
+        t = np.arange(n) / sr
+        click = rng.normal(0, 1, n) * np.exp(-t * 90.0)
+        body = np.sin(2 * np.pi * 320.0 * t) * np.exp(-t * 40.0)
+        sig = click * 0.7 + body * 0.4
         
     else:
         raise ValueError(f"Unknown SFX kind: {kind}")

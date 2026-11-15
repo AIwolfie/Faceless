@@ -1,0 +1,23 @@
+formats:
+  long:
+    canvas: {w: 1920, h: 1080, fps: 30}
+    key_zone: {x: 96, y: 54, w: 1728, h: 972}
+    captions: {style: T2, box: {x: 360, y: 850, w: 1200, h: 120}, font_px: 44}
+    reserved:
+      - {name: player_controls, x: 0, y: 970, w: 1920, h: 110}
+      - {name: top_right, x: 1760, y: 0, w: 160, h: 100}
+      - {name: watermark, x: 1720, y: 960, w: 200, h: 120}
+    grid: {cols: 12, rows: 6, gutter: 24}
+    zoom_center: {x: 960, y: 540}
+    max_event_gap_s: 2.5
+  short:
+    canvas: {w: 1080, h: 1920, fps: 30}
+    key_zone: {x: 120, y: 180, w: 840, h: 1320}
+    captions: {style: T1, box: {x: 150, y: 1300, w: 780, h: 200}, font_px: 78}
+    reserved:
+      - {name: top_ui, x: 0, y: 0, w: 1080, h: 180}
+      - {name: right_column, x: 960, y: 0, w: 120, h: 1920}
+      - {name: bottom_tray, x: 0, y: 1500, w: 1080, h: 420}
+    bands: {A: [180, 560], B: [560, 1280], C: [1300, 1500]}
+    zoom_center: {x: 540, y: 840}
+    max_event_gap_s: 2.0
