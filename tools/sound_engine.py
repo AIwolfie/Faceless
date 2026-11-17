@@ -18,6 +18,52 @@ REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 def db_to_linear(db: float) -> float:
     return 10.0 ** (db / 20.0)
 
+SFX_LIBRARY_DIR = os.path.join(SCRIPT_DIR, "sfx_library")
+
+SFX_FILE_MAP = {
+    "click": "ui_click_soft.wav",
+    "clack": "ui_click_soft.wav",
+    "click_8bit": "ui_click_8bit.wav",
+    "switch": "ui_switch_on.wav",
+    "switch_off": "ui_switch_off.wav",
+    "pop": "ui_notification_pop.wav",
+    "chime": "ui_success_chime.wav",
+    "error": "ui_error_buzz.wav",
+    "buzz": "ui_error_buzz.wav",
+    "tick": "ui_hover_tick.wav",
+    "coin": "ui_coin_collect.wav",
+    "arcade": "ui_arcade_beep.wav",
+    "begin": "ui_begin_chime.wav",
+    "glitch": "sfx_glitch_01.wav",
+    "glitch_02": "sfx_glitch_02.wav",
+    "glitch_03": "sfx_glitch_03.wav",
+    "slam": "sfx_impact_light.wav",
+    "impact": "sfx_impact_light.wav",
+    "heavy_impact": "sfx_impact_heavy.wav",
+    "drop": "sfx_drop_01.wav"
+}
+
+def load_sfx(kind: str, sr: int = 48000) -> np.ndarray:
+    """
+    Loads curated audio SFX from tools/sfx_library/ with automatic resampling,
+    falling back to procedural synthesis if the file is absent.
+    """
+    if kind in SFX_FILE_MAP:
+        p = os.path.join(SFX_LIBRARY_DIR, SFX_FILE_MAP[kind])
+        if os.path.exists(p):
+            try:
+                data, in_sr = sf.read(p, dtype="float32")
+                if data.ndim > 1:
+                    data = data.mean(axis=1)
+                if in_sr != sr:
+                    import scipy.signal
+                    num_samples = int(len(data) * sr / in_sr)
+                    data = scipy.signal.resample(data, num_samples).astype(np.float32)
+                return data
+            except Exception:
+                pass
+    return generate_sfx(kind, sr)
+
 def generate_sfx(kind: str, sr: int = 48000, seed: int = 42) -> np.ndarray:
     """
     Generates procedural UI sound effects:
