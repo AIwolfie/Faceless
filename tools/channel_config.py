@@ -20,7 +20,7 @@ DEFAULT_CHANNEL_CONFIG: Dict[str, Any] = {
     "niche": "AI and Tech",
     "tagline": "AI • TECH • CODE",
     "badge": "TC",
-    "logo_path": "media/txk_logo.png",
+    "logo_path": "",
     "experience_years": 3,
     "voice": {
         "engine": "kokoro-onnx",

@@ -22,12 +22,14 @@ import subprocess
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 
+CREATOR_DIR = "Kenil" if os.path.exists(os.path.join(REPO_ROOT, "Kenil")) else "TechXKenil"
+
 # Private files that must NEVER be synced to the public open-source space
 STRICTLY_PRIVATE_FILES = [
-    "TechXKenil/docs/IDEAS.md",
-    "TechXKenil/channel_profile.json",
-    "TechXKenil/README.md",
-    "TechXKenil/REAL_FOOTAGE_PLAYBOOK.md",
+    f"{CREATOR_DIR}/docs/IDEAS.md",
+    f"{CREATOR_DIR}/channel_profile.json",
+    f"{CREATOR_DIR}/README.md",
+    f"{CREATOR_DIR}/REAL_FOOTAGE_PLAYBOOK.md",
     "channel.json",
     ".env"
 ]
@@ -36,112 +38,112 @@ STRICTLY_PRIVATE_FILES = [
 SYNC_PAIRS = [
     (
         "agents/skills/motion-editing/SKILL.md",
-        "TechXKenil/skills/techxkenil-motion-editing/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-motion-editing/SKILL.md",
         "motion-editing"
     ),
     (
         "agents/skills/humanized-video/SKILL.md",
-        "TechXKenil/skills/techxkenil-humanized-video/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-humanized-video/SKILL.md",
         "humanized-video"
     ),
     (
         "agents/skills/real-ui/SKILL.md",
-        "TechXKenil/skills/techxkenil-real-ui/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-real-ui/SKILL.md",
         "real-ui"
     ),
     (
         "agents/skills/real-world-footage/SKILL.md",
-        "TechXKenil/skills/techxkenil-real-world-footage/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-real-world-footage/SKILL.md",
         "real-world-footage"
     ),
     (
         "agents/skills/animation-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-animation-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-animation-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/rules/video-production-rules.md",
-        "TechXKenil/rules/video-production-rules.md",
+        f"{CREATOR_DIR}/rules/video-production-rules.md",
         "rules"
     ),
     (
         "agents/rules/animation-selection.md",
-        "TechXKenil/rules/animation-selection.md",
+        f"{CREATOR_DIR}/rules/animation-selection.md",
         "rules"
     ),
     (
         "agents/rules/visual-rhythm.md",
-        "TechXKenil/rules/visual-rhythm.md",
+        f"{CREATOR_DIR}/rules/visual-rhythm.md",
         "rules"
     ),
     (
         "agents/rules/platform-safe-layout.md",
-        "TechXKenil/rules/platform-safe-layout.md",
+        f"{CREATOR_DIR}/rules/platform-safe-layout.md",
         "rules"
     ),
     (
         "agents/skills/storytelling-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-storytelling-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-storytelling-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/audio-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-audio-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-audio-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/caption-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-caption-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-caption-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/rules/storytelling-rules.md",
-        "TechXKenil/rules/storytelling-rules.md",
+        f"{CREATOR_DIR}/rules/storytelling-rules.md",
         "rules"
     ),
     (
         "agents/rules/audio-caption-rules.md",
-        "TechXKenil/rules/audio-caption-rules.md",
+        f"{CREATOR_DIR}/rules/audio-caption-rules.md",
         "rules"
     ),
     (
         "agents/rules/asset-rules.md",
-        "TechXKenil/rules/asset-rules.md",
+        f"{CREATOR_DIR}/rules/asset-rules.md",
         "rules"
     ),
     (
         "agents/skills/scene-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-scene-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-scene-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/asset-director/SKILL.md",
-        "TechXKenil/skills/techxkenil-asset-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-asset-director/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/voice-production/SKILL.md",
-        "TechXKenil/skills/techxkenil-voice-production/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-voice-production/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/audio-mixing/SKILL.md",
-        "TechXKenil/skills/techxkenil-audio-mixing/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-audio-mixing/SKILL.md",
         "animation-director"
     ),
     (
         "agents/skills/animation-library/SKILL.md",
-        "TechXKenil/skills/techxkenil-animation-library/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-animation-library/SKILL.md",
         "animation-library"
     ),
     (
         "agents/skills/viral-motion-graphics/SKILL.md",
-        "TechXKenil/skills/techxkenil-viral-motion-graphics/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-viral-motion-graphics/SKILL.md",
         "animation-director"
     ),
     (
         "GEMINI.md",
-        "TechXKenil/GEMINI.md",
+        f"{CREATOR_DIR}/GEMINI.md",
         "gemini"
     )
 ]
@@ -310,10 +312,10 @@ def verify_security():
         res = subprocess.run(["git", "status", "--porcelain"], cwd=REPO_ROOT, capture_output=True, text=True)
         tracked_output = res.stdout
         for line in tracked_output.splitlines():
-            if "TechXKenil" in line:
+            if "TechXKenil" in line or "Kenil" in line:
                 print(f"❌ CRITICAL LEAK WARNING: {line} appears in git status!")
                 return False
-        print("  ✓ Verified: Zero files from TechXKenil/ are staged or tracked by git.")
+        print(f"  ✓ Verified: Zero files from {CREATOR_DIR}/ are staged or tracked by git.")
     except Exception as e:
         print(f"  ⚠️ Warning: Unable to run git status check ({e})")
 

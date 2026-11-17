@@ -219,9 +219,9 @@ def render_branding_clip(
             logo_img = Image.open(logo_path).convert("RGBA")
         except Exception:
             logo_img = None
-    elif os.path.exists("media/txk_logo.png"):
+    elif os.path.exists("media/logo.png"):
         try:
-            logo_img = Image.open("media/txk_logo.png").convert("RGBA")
+            logo_img = Image.open("media/logo.png").convert("RGBA")
         except Exception:
             logo_img = None
 
