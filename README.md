@@ -147,8 +147,8 @@ flowchart TD
       <p>Eliminates linear drift. <code>tools/subtitle_engine.py</code> calculates word durations based on English syllable weights and punctuation pauses, keeping on-screen captions in perfect lockstep with spoken narration.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🔊 Procedural Sound Design & Mastering</h3>
-      <p>Integrated <code>tools/sound_engine.py</code> automatically synthesizes UI sound effects (whooshes, pops, ticks, chimes) and mixes ducked ambient synth pads mastered to <b>-15.0 LUFS</b> broadcast standards.</p>
+      <h3>🔊 Curated SFX Library & Sound Design Engine</h3>
+      <p>Integrated <code>tools/sound_engine.py</code> with <code>tools/sfx_library/</code> loads 17 curated zero-latency UI sound effects (clicks, pops, glitch bursts, impacts, chimes) alongside procedural synthesis and mixes ducked ambient synth pads mastered to <b>-15.0 LUFS</b> broadcast standards.</p>
     </td>
   </tr>
   <tr>
@@ -179,6 +179,16 @@ flowchart TD
     <td width="50%" valign="top">
       <h3>🎛️ Broadcast Audio DSP & Mastering Engine</h3>
       <p>Professional audio DSP via <code>tools/audio_dsp.py</code>: 80Hz rumble highpass, automatic speech leveler (AGC), 3-band vocal parametric EQ (Warmth, Presence, Air), sidechain ducking, and brickwall peak limiter (-0.5 dBFS).</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🎬 Universal Canonical Intro & Outro Engine</h3>
+      <p>Standardized brand recognition via <code>tools/universal_branding.py</code>: procedural concentric tech glow rings, official channel logo resolution, floating physics, and interactive subscribe button conversion with realistic Bezier cursor glide and ripple click.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🛡️ Dual-Space Privacy & Zero-Leak Sync</h3>
+      <p>Automated boundary verification via <code>tools/sync_engine.py</code>: maintains 100% strict separation between public open-source codebase and creator-private assets/scripts (<code>Kenil/</code>, <code>TechXKenil/</code>) with cryptographic zero-leak verification before every git commit.</p>
     </td>
   </tr>
 </table>
@@ -320,22 +330,28 @@ techxkenil-video-engine/
 ├── layout.yaml               # Screen zone & caption boundary rules (16:9 & 9:16)
 │
 ├── tools/                    # Shared production libraries
+│   ├── orchestrator.py       # Unified end-to-end studio pipeline runner
 │   ├── render_core.py        # 4K 60FPS vector compositor, overscan canvas, karaoke
 │   ├── video_pipeline.py     # Hardware-accelerated streaming pipeline (QSV/NVENC/MF)
 │   ├── viral_animator.py     # Story-driven declarative vector & spring physics animator
 │   ├── character_puppet.py   # Procedural 2D articulated character puppet & stickman posing engine
+│   ├── universal_branding.py # Canonical universal intro & outro conversion engine with subscribe click
 │   ├── motion_verify.py      # Automated motion verification & contact sheet gate
 │   ├── voice_engine.py       # Unified neural TTS synthesis & mastering engine
 │   ├── voice_normalizer.py   # Script text normalization & phonetic expansion for TTS
 │   ├── speech_chunker.py     # Natural sentence & semantic clause boundary chunking
 │   ├── audio_dsp.py          # Broadcast audio DSP, speech leveler (AGC), EQ, and limiter
+│   ├── sfx_library/          # 17 curated zero-latency UI sound effects (clicks, pops, glitches, chimes)
+│   ├── sound_engine.py       # Curated SFX loader, procedural synthesis & broadcast mastering (-15 LUFS)
 │   ├── real_footage.py       # Authentic footage compliance, licensing logger, grading
 │   ├── channel_config.py     # Modular channel profile & branding loader
 │   ├── sync_engine.py        # Dual-space synchronization & zero-leak perimeter verification
 │   ├── motion.py             # Springs, supersampling, blur, keyframes
 │   ├── humanize.py           # Easing, karaoke, SFX synthesizer, master()
-│   ├── sound_engine.py       # Procedural SFX generation & broadcast mastering (-15 LUFS)
+│   ├── subtitle_engine.py    # Syllable-weighted forced-alignment subtitle engine
+│   ├── lexicon.py            # Phonetic dictionary & pronunciation normalizer for Kokoro TTS
 │   ├── qa.py                 # Automated video & audio QA gate (freeze & decode validation)
+│   ├── capture_code.py       # Headless Chromium real VS Code & Terminal window renderer
 │   ├── capture_ui.py         # Headless Chromium screen capture (--4k) & terminal generator
 │   ├── generate_metadata.py  # High-CTR YouTube SEO & chapter generator
 │   └── generate_thumbnail.py # Automated high-CTR thumbnail generator
