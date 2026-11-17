@@ -142,6 +142,21 @@ SYNC_PAIRS = [
         "animation-director"
     ),
     (
+        "agents/skills/character-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-character-director/SKILL.md",
+        "animation-director"
+    ),
+    (
+        "agents/skills/motion-director/SKILL.md",
+        f"{CREATOR_DIR}/skills/techxkenil-motion-director/SKILL.md",
+        "animation-director"
+    ),
+    (
+        "agents/rules/motion-graphics-standards.md",
+        f"{CREATOR_DIR}/rules/motion-graphics-standards.md",
+        "rules"
+    ),
+    (
         "GEMINI.md",
         f"{CREATOR_DIR}/GEMINI.md",
         "gemini"

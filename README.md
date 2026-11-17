@@ -157,8 +157,28 @@ flowchart TD
       <p>Direct RGB24 pipe to <code>ffmpeg</code> standard input. Auto-probes hardware encoders (<b>Intel QSV</b>, <b>NVIDIA NVENC</b>, <b>Media Foundation</b>) with peak RAM usage under 350 MB and exact sample-duration targeting.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🛡️ Mathematical QA Gate</h3>
-      <p>Integrated <code>qa.py</code> automated gate verifies <b>zero stream decode errors</b> (<code>ffmpeg -v error -f null -</code>), enforces YouTube loudness (<b>-14.0 to -16.5 LUFS</b>), and guarantees zero static holds.</p>
+      <h3>🛡️ Mathematical QA Gate & Motion Verifier</h3>
+      <p>Integrated <code>tools/qa.py</code> and <code>tools/motion_verify.py</code> automated gate verifies <b>zero stream decode errors</b>, enforces YouTube loudness (<b>-14.0 to -16.5 LUFS</b>), extracts 6-panel contact sheets, and guarantees zero static holds.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🎭 Autonomous Character Director & Puppet Engine</h3>
+      <p>Procedural 2D character staging via <code>tools/character_puppet.py</code> and <code>character-director</code>. Supports articulated limbs, expressive emotional eyes/mouths (neutral, focused, thinking, error, happy), and dynamic action poses (explain, point, shock recoil, typing).</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>⚡ Master Motion Graphics & Kinetic Typography</h3>
+      <p>Full motion graphics suite via <code>agents/skills/motion-director/</code> and <code>agents/rules/motion-graphics-standards.md</code>: kinetic typography, masked text reveals, spring physics curves, diagram animation, and continuous anti-freeze camera drift.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🎙️ Text Normalization & Speech Chunker</h3>
+      <p>Intelligent text normalization via <code>tools/voice_normalizer.py</code> and <code>tools/speech_chunker.py</code>: cleans invisible zero-width characters, spells numbers/currencies/decimals, expands tech acronyms, and chunks prose at natural clause boundaries.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎛️ Broadcast Audio DSP & Mastering Engine</h3>
+      <p>Professional audio DSP via <code>tools/audio_dsp.py</code>: 80Hz rumble highpass, automatic speech leveler (AGC), 3-band vocal parametric EQ (Warmth, Presence, Air), sidechain ducking, and brickwall peak limiter (-0.5 dBFS).</p>
     </td>
   </tr>
 </table>
@@ -303,6 +323,12 @@ techxkenil-video-engine/
 │   ├── render_core.py        # 4K 60FPS vector compositor, overscan canvas, karaoke
 │   ├── video_pipeline.py     # Hardware-accelerated streaming pipeline (QSV/NVENC/MF)
 │   ├── viral_animator.py     # Story-driven declarative vector & spring physics animator
+│   ├── character_puppet.py   # Procedural 2D articulated character puppet & stickman posing engine
+│   ├── motion_verify.py      # Automated motion verification & contact sheet gate
+│   ├── voice_engine.py       # Unified neural TTS synthesis & mastering engine
+│   ├── voice_normalizer.py   # Script text normalization & phonetic expansion for TTS
+│   ├── speech_chunker.py     # Natural sentence & semantic clause boundary chunking
+│   ├── audio_dsp.py          # Broadcast audio DSP, speech leveler (AGC), EQ, and limiter
 │   ├── real_footage.py       # Authentic footage compliance, licensing logger, grading
 │   ├── channel_config.py     # Modular channel profile & branding loader
 │   ├── sync_engine.py        # Dual-space synchronization & zero-leak perimeter verification
@@ -319,8 +345,10 @@ techxkenil-video-engine/
 │   └── channel_profile_template.md # Channel branding & persona template
 │
 ├── agents/                   # Agent configurations & knowledge base
-│   ├── rules/                # Modular video production rules (visual rhythm, animation selection)
+│   ├── rules/                # Modular video production rules (visual rhythm, animation selection, motion standards)
 │   └── skills/               # Custom Antigravity skills
+│       ├── character-director/ # Autonomous character direction, stickman & puppet animation
+│       ├── motion-director/  # Master motion graphics, kinetic typography, spring physics
 │       ├── viral-motion-graphics/ # High-retention vector animations & spring motion
 │       ├── real-world-footage/ # Authentic footage, YouTube 2026 originality, license logger
 │       ├── motion-editing/   # Core motion graphics skill
